@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectLanguage extends StatefulWidget {
   const SelectLanguage({Key? key}) : super(key: key);
@@ -8,6 +9,12 @@ class SelectLanguage extends StatefulWidget {
 }
 
 class _SelectLanguageState extends State<SelectLanguage> {
+  _setLanguage(lang) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString("lang", 'ru');
+    Navigator.of(context).pushNamed('/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,17 +36,22 @@ class _SelectLanguageState extends State<SelectLanguage> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 50)),
-                onPressed: () {},
                 child: Text('Русский'),
+                onPressed: () {
+                  _setLanguage('ru');
+                },
               ),
             ),
             Container(
               child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: Size(double.infinity, 50),
-                      padding: EdgeInsets.symmetric(vertical: 20)),
-                  onPressed: () {},
-                  child: Text('Узбекский')),
+                style: ElevatedButton.styleFrom(
+                    minimumSize: Size(double.infinity, 50),
+                    padding: EdgeInsets.symmetric(vertical: 20)),
+                child: Text('Узбекский'),
+                onPressed: () {
+                  _setLanguage('uz');
+                },
+              ),
             ),
           ],
         ),
