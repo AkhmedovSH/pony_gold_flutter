@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './auth/login.dart';
 import './auth/register.dart';
 import './auth/select_language.dart';
+import 'pages/main_page.dart';
 
 void main() {
   runApp(App());
@@ -33,6 +34,7 @@ class _AppState extends State<App> {
         '/': (context) => SelectLanguage(),
         '/login': (context) => Login(),
         '/register': (context) => Register(),
+        '/main_page': (context) => MainPage(),
       },
     );
   }

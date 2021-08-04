@@ -12,7 +12,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
   _setLanguage(lang) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString("lang", 'ru');
-    Navigator.of(context).pushNamed('/login');
+    Navigator.pushReplacementNamed(context, '/login');
   }
 
   @override
